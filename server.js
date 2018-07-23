@@ -1,4 +1,4 @@
-// server.js
+/// server.js
 // where your node app starts
 
 // init project
@@ -20,8 +20,14 @@ app.get("/", function (req, res) {
 
 
 // your first API endpoint... 
-app.get("/api/hello", function (req, res) {
-  res.json({greeting: 'hello API'});
+app.get("/api/whoami", function (req, res) {
+  var header = req.headers;
+  var infos = header['user-agent'];
+  var langs = header['accept-language'];
+  var ip = req.connection.remoteAddress;
+  
+  res.json({"ipaddress": ip, "language": langs, "software": infos});
+
 });
 
 
